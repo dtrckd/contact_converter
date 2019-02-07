@@ -24,13 +24,13 @@ _outlook_fields = [ "First Name", "Middle Name", "Last Name", "Title", "Suffix",
     ]
 
 _google_fields = [
-    'Name', 'Given Name', 'Additional Name', 'Family Name', 'Yomi Name', 'Given Name Yomi',
-    'Additional Name Yomi', 'Family Name Yomi', 'Name Prefix', 'Name Suffix', 'Initials', 'Nickname',
-    'Short Name', 'Maiden Name', 'Birthday', 'Gender', 'Location', 'Billing Information',
-    'Directory Server', 'Mileage', 'Occupation', 'Hobby', 'Sensitivity', 'Priority',
-    'Subject', 'Notes', 'Language', 'Photo', 'Group Membership', 'E-mail 1 - Type',
-    'E-mail 1 - Value', 'E-mail 2 - Type', 'E-mail 2 - Value', 'Phone 1 - Type', 'Phone 1 - Value', 'Phone 2 - Type',
-    'Phone 2 - Value', 'Website 1 - Type', 'Website 1 - Value',
+    "Name", "Given Name", "Additional Name", "Family Name", "Yomi Name", "Given Name Yomi",
+    "Additional Name Yomi", "Family Name Yomi", "Name Prefix", "Name Suffix", "Initials", "Nickname",
+    "Short Name", "Maiden Name", "Birthday", "Gender", "Location", "Billing Information",
+    "Directory Server", "Mileage", "Occupation", "Hobby", "Sensitivity", "Priority",
+    "Subject", "Notes", "Language", "Photo", "Group Membership", "E-mail 1 - Type",
+    "E-mail 1 - Value", "E-mail 2 - Type", "E-mail 2 - Value", "Phone 1 - Type", "Phone 1 - Value", "Phone 2 - Type",
+    "Phone 2 - Value", "Website 1 - Type", "Website 1 - Value",
 ]
 
 
@@ -43,7 +43,7 @@ class Converter(object):
     #
 
     ## Name
-    #join(Name Prefix, Additional Name , Name, Given Name, Family Name ) ->  Middle Name
+    #join(Name Prefix, Additional Name , Name, Given Name, Family Name ) ->  First Name
     #
     ## Phone
     #Phone 1 - Value-> Home Phone
@@ -70,6 +70,11 @@ class Converter(object):
         self.rows_in = _google_fields
         self.rows_out = _outlook_fields
 
+        # Be more exhaustive
+        #self._dico = {'Name': 'First Name',
+        #               ...
+        #             }
+
 
     # no effect...
     def convert_wrapper(fun):
@@ -83,7 +88,7 @@ class Converter(object):
         res = {}
         #name = ' '.join([str(x.get(f, '')).strip() for f in ['Name Prefix', 'Additional Name' , 'Name', 'Given Name', 'Family Name']])
         name = x['Name']
-        res['Middle Name'] = name
+        res['First Name'] = name
         return res
 
     @convert_wrapper
