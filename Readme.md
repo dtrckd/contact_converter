@@ -9,5 +9,5 @@ Convert csv contacts from a format to another.
 
 ## Usage
 
-  ./convert_contacts path/to/contacts.csv
+    ./convert_contacts path/to/contacts.csv
 
